@@ -3,12 +3,10 @@ package com.example.authentication.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import javax.management.relation.Role;
-
 @Entity
 @Data
 @Table(name = "users")
-public class userEntity {
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
