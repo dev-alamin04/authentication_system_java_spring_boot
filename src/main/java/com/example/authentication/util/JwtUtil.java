@@ -25,11 +25,7 @@ public class JwtUtil {
     }
 
     public String generateToken(String email) {
-        return Jwts.builder().setSubject(email)
-                .setIssuedAt(new Date())
-                .setExpiration(new Date(System.currentTimeMillis() + expiration))
-                .signWith(getSigingnKey(), SignatureAlgorithm.HS256)
-                .compact();
+        return Jwts.builder().setSubject(email).setIssuedAt(new Date()).setExpiration(new Date(System.currentTimeMillis() + expiration)).signWith(getSigingnKey(), SignatureAlgorithm.HS256).compact();
     }
 
     public String extractEmail(String token) {
@@ -45,15 +41,12 @@ public class JwtUtil {
         }
     }
 
-    public boolean isExpired(String token){
+    public boolean isExpired(String token) {
         return extractClaims(token).getExpiration().before(new Date());
     }
 
     private Claims extractClaims(String token) {
-        return Jwts.parserBuilder()
-                .setSigningKey(getSigingnKey())
-                .build().parseClaimsJws(token)
-                .getBody();
+        return Jwts.parserBuilder().setSigningKey(getSigingnKey()).build().parseClaimsJws(token).getBody();
     }
 
 }
